@@ -21,8 +21,9 @@ const handler = createMcpHandler((server) => {
     async (_, { authInfo }) => {
       const clerkAuthInfo = authInfo as unknown as ClerkAuthInfo;
       if (!clerkAuthInfo?.subject) {
+        console.error(authInfo);
         return {
-          content: [{ type: "text", text: "Error: malformed auth info" }],
+          content: [{ type: "text", text: "Error: user not authenticated" }],
         };
       }
       const user = await clerk.users.getUser(clerkAuthInfo.subject);
