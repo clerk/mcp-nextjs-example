@@ -3,13 +3,7 @@ import {
   experimental_withMcpAuth as withMcpAuth,
 } from "@vercel/mcp-adapter";
 import { auth, clerkClient } from "@clerk/nextjs/server";
-
-interface ClerkAuthInfo {
-  id?: string;
-  subject?: string;
-  tokenType?: string;
-  scopes?: string[];
-}
+import { type MachineAuthObject } from "@clerk/backend";
 
 const clerk = await clerkClient();
 
@@ -19,7 +13,8 @@ const handler = createMcpHandler((server) => {
     "Gets data about the Clerk user that authorized this request",
     {},
     async (_, { authInfo }) => {
-      const clerkAuthInfo = authInfo as unknown as ClerkAuthInfo;
+      const clerkAuthInfo =
+        authInfo as unknown as MachineAuthObject<"oauth_token">;
       if (!clerkAuthInfo?.subject) {
         console.error(authInfo);
         return {
