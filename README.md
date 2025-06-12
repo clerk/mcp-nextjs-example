@@ -11,12 +11,11 @@ A minimal example of an MCP server endpoint using Next.js and Clerk for authenti
 
 ### Connecting to the server
 
-To test in cursor, add the following config to your mcp config file:
+To test in cursor, for example, add the following config to your mcp config file:
 
 ```json
 "mcp-clerk-next": {
-  "command": "npx",
-  "args": ["mcp-remote", "http://localhost:3000/mcp", "--allow-http"]
+  "url": "http://localhost:3000/mcp"
 }
 ```
 
