@@ -1,5 +1,8 @@
-import { authServerMetadataHandlerClerk } from "@clerk/mcp-tools/next";
+import {
+  authServerMetadataHandlerClerk,
+  metadataCorsOptionsRequestHandler,
+} from "@clerk/mcp-tools/next";
 
 const handler = authServerMetadataHandlerClerk();
 
-export { handler as GET };
+export { handler as GET, metadataCorsOptionsRequestHandler as OPTIONS };

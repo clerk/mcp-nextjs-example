@@ -5,7 +5,7 @@ A minimal example of an MCP server endpoint using Next.js and Clerk for authenti
 ### Setup
 
 - Run `npm i` to install dependencies
-- Create a Clerk application and make sure you have been opted in to the OAuth beta flag (contact `support@clerk.com` or reach out to a contact at Clerk if you have one)
+- Create a Clerk application, and make sure that dynamic client registration has been toggled on [in the dashboard](https://dashboard.clerk.com/last-active?path=oauth-applications).
 - Put [your API keys](https://dashboard.clerk.com/last-active?path=api-keys) in an `.env.local` file in the project
 - Run `npm run dev` to start the app
 

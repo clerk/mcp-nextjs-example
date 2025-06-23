@@ -1,9 +1,9 @@
+import type { MachineAuthObject } from "@clerk/backend";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 import {
   createMcpHandler,
   experimental_withMcpAuth as withMcpAuth,
 } from "@vercel/mcp-adapter";
-import { auth, clerkClient } from "@clerk/nextjs/server";
-import { type MachineAuthObject } from "@clerk/backend";
 
 const clerk = await clerkClient();
 
