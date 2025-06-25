@@ -1,4 +1,5 @@
-import { auth, clerkClient } from "@clerk/nextjs/server";
+import { verifyClerkToken } from "@clerk/mcp-tools/next";
+import { clerkClient } from "@clerk/nextjs/server";
 import {
   createMcpHandler,
   experimental_withMcpAuth as withMcpAuth,
@@ -10,45 +11,19 @@ const handler = createMcpHandler((server) => {
   server.tool(
     "get-clerk-user-data",
     "Gets data about the Clerk user that authorized this request",
-    {},
+    {}, // tool parameters here if present
     async (_, { authInfo }) => {
-      const userId = authInfo?.extra?.userId as string;
-      if (!userId) {
-        console.error(authInfo);
-        return {
-          content: [{ type: "text", text: "Error: user not authenticated" }],
-        };
-      }
-      const user = await clerk.users.getUser(userId);
+      // non-null assertion is safe here, authHandler ensures presence
+      const userId = authInfo!.extra!.userId! as string;
+      const userData = await clerk.users.getUser(userId);
+
       return {
-        content: [{ type: "text", text: JSON.stringify(user) }],
+        content: [{ type: "text", text: JSON.stringify(userData) }],
       };
     }
   );
 });
 
-const authHandler = withMcpAuth(
-  handler,
-  async (_, token) => {
-    if (!token) return undefined;
-
-    const { scopes, clientId, userId } = await auth({
-      acceptsToken: "oauth_token",
-    });
-
-    if (!clientId || !scopes) {
-      console.error("No scopes or clientId returned from auth()");
-      return undefined;
-    }
-
-    return {
-      token,
-      scopes,
-      clientId,
-      extra: { userId },
-    };
-  },
-  { required: true }
-);
+const authHandler = withMcpAuth(handler, verifyClerkToken, { required: true });
 
 export { authHandler as GET, authHandler as POST };

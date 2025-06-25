@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/mcp-tools": "0.0.5",
+    "@clerk/mcp-tools": "0.1.0",
     "@clerk/nextjs": "6.23.0",
     "@vercel/mcp-adapter": "^0.11.1",
     "next": "15.3.4",
