@@ -1,5 +1,5 @@
 import { verifyClerkToken } from "@clerk/mcp-tools/next";
-import { clerkClient } from "@clerk/nextjs/server";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 import {
   createMcpHandler,
   experimental_withMcpAuth as withMcpAuth,
@@ -24,6 +24,13 @@ const handler = createMcpHandler((server) => {
   );
 });
 
-const authHandler = withMcpAuth(handler, verifyClerkToken, { required: true });
+const authHandler = withMcpAuth(
+  handler,
+  async (_, token) => {
+    const clerkAuth = await auth({ acceptsToken: "oauth_token" });
+    return verifyClerkToken(clerkAuth, token);
+  },
+  { required: true }
+);
 
 export { authHandler as GET, authHandler as POST };
