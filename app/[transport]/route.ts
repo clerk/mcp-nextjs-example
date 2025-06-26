@@ -30,7 +30,10 @@ const authHandler = withMcpAuth(
     const clerkAuth = await auth({ acceptsToken: "oauth_token" });
     return verifyClerkToken(clerkAuth, token);
   },
-  { required: true }
+  {
+    required: true,
+    resourceMetadataPath: "/.well-known/oauth-protected-resource/mcp",
+  }
 );
 
 export { authHandler as GET, authHandler as POST };
