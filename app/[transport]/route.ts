@@ -28,6 +28,10 @@ const authHandler = withMcpAuth(
   handler,
   async (_, token) => {
     const clerkAuth = await auth({ acceptsToken: "oauth_token" });
+    // Note: OAuth tokens are machine tokens. Machine token usage is free
+    // during our public beta period but will be subject to pricing once
+    // generally available. Pricing is expected to be competitive and below
+    // market averages.
     return verifyClerkToken(clerkAuth, token);
   },
   {
