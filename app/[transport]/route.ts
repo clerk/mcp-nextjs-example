@@ -1,9 +1,6 @@
 import { verifyClerkToken } from "@clerk/mcp-tools/next";
 import { auth, clerkClient } from "@clerk/nextjs/server";
-import {
-  createMcpHandler,
-  experimental_withMcpAuth as withMcpAuth,
-} from "@vercel/mcp-adapter";
+import { createMcpHandler, withMcpAuth } from "@vercel/mcp-adapter";
 
 const clerk = await clerkClient();
 
@@ -14,7 +11,7 @@ const handler = createMcpHandler((server) => {
     {}, // tool parameters here if present
     async (_, { authInfo }) => {
       // non-null assertion is safe here, authHandler ensures presence
-      const userId = authInfo!.extra!.userId! as string;
+      const userId = authInfo?.extra?.userId! as string;
       const userData = await clerk.users.getUser(userId);
 
       return {
