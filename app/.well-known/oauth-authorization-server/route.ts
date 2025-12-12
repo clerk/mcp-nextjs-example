@@ -5,4 +5,9 @@ import {
 
 const handler = authServerMetadataHandlerClerk();
 
-export { handler as GET, metadataCorsOptionsRequestHandler as OPTIONS };
+export { handler as GET };
+
+export function OPTIONS(_: Request): Response {
+  const preflightHandler = metadataCorsOptionsRequestHandler();
+  return preflightHandler();
+}
