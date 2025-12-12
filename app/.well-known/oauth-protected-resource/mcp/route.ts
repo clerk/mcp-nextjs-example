@@ -7,4 +7,9 @@ const handler = protectedResourceHandlerClerk({
   scopes_supported: ["profile", "email"],
 });
 
-export { handler as GET, metadataCorsOptionsRequestHandler as OPTIONS };
+export { handler as GET };
+
+export function OPTIONS(_: Request): Response | Promise<Response> {
+  const preflightHandler = metadataCorsOptionsRequestHandler();
+  return preflightHandler();
+}
