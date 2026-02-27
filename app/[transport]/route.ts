@@ -1,6 +1,6 @@
 import { verifyClerkToken } from "@clerk/mcp-tools/next";
 import { auth, clerkClient } from "@clerk/nextjs/server";
-import { createMcpHandler, withMcpAuth } from "@vercel/mcp-adapter";
+import { createMcpHandler, withMcpAuth } from "mcp-handler";
 
 const clerk = await clerkClient();
 
