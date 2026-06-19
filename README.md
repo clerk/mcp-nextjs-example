@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/clerk-mcp-nextjs-example-badge.png)](https://mseep.ai/app/clerk-mcp-nextjs-example)
+
 # MCP Server with Clerk & Next.js
 
 A minimal example of an MCP server endpoint using Next.js and Clerk for authentication.
