@@ -5,19 +5,21 @@ import { createMcpHandler, withMcpAuth } from "mcp-handler";
 const clerk = await clerkClient();
 
 const handler = createMcpHandler((server) => {
-  server.tool(
-    "get-clerk-user-data",
-    "Gets data about the Clerk user that authorized this request",
-    {}, // tool parameters here if present
-    async (_, { authInfo }) => {
-      // casting as stringis safe here, authHandler ensures presence
+  server.registerTool(
+    "get_clerk_user_data",
+    {
+      description:
+        "Gets data about the Clerk user that authorized this request",
+    },
+    async ({ authInfo }) => {
+      // casting as string is safe here, authHandler ensures presence
       const userId = authInfo?.extra?.userId as string;
       const userData = await clerk.users.getUser(userId);
 
       return {
         content: [{ type: "text", text: JSON.stringify(userData) }],
       };
-    }
+    },
   );
 });
 
@@ -34,7 +36,7 @@ const authHandler = withMcpAuth(
   {
     required: true,
     resourceMetadataPath: "/.well-known/oauth-protected-resource/mcp",
-  }
+  },
 );
 
 export { authHandler as GET, authHandler as POST };
