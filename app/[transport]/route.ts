@@ -12,8 +12,8 @@ const handler = createMcpHandler((server) => {
         "Gets data about the Clerk user that authorized this request",
     },
     async ({ authInfo }) => {
-      // casting as string is safe here, authHandler ensures presence
-      const userId = authInfo?.extra?.userId as string;
+      // non-null assertion is safe here, authHandler ensures presence
+      const userId = authInfo!.extra!.userId! as string;
       const userData = await clerk.users.getUser(userId);
 
       return {
