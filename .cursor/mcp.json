@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "mcp-clerk-next": {
+      "url": "http://localhost:3000/mcp"
+    }
+  }
+}
