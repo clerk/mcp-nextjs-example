@@ -1,5 +1,5 @@
 {
-  "name": "clerk-mcp-next",
+  "name": "mcp-clerk-next",
   "version": "0.1.1",
   "description": "A demo MCP server using Clerk and Next.js",
   "private": true,
