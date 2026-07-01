@@ -1,6 +1,7 @@
 {
-  "name": "clerk-mcp-next",
-  "version": "0.1.0",
+  "name": "mcp-clerk-next",
+  "version": "0.1.1",
+  "description": "A demo MCP server using Clerk and Next.js",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,9 +10,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/mcp-tools": "0.3.1",
-    "@clerk/nextjs": "6.33.1",
-    "mcp-handler": "^1.0.0",
+    "@clerk/mcp-tools": "^0.5.0",
+    "@clerk/nextjs": "^7.5.9",
+    "mcp-handler": "^1.1.0",
     "next": "15.5.9",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
