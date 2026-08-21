@@ -1,6 +1,6 @@
 {
   "name": "clerk-mcp-next",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/mcp-tools": "0.3.1",
-    "@clerk/nextjs": "6.33.1",
-    "mcp-handler": "^1.0.0",
+    "@clerk/mcp-tools": "0.7.0",
+    "@clerk/nextjs": "7.7.8",
+    "@modelcontextprotocol/server": "^2.0.0",
     "next": "15.5.9",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
